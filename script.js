@@ -16,7 +16,7 @@ function makeGrid(num) {
     for (let i = 0; i < gridBoxes; i++) {
         let grid = document.createElement('div');
         grid.className = 'gridItem';
-        grid.style.backgroundColor = 'black';
+        grid.style.backgroundColor = 'white';
         gridContainer.append(grid);
         const gridItems = document.querySelectorAll('.gridItem');
         gridItems.forEach(item => item.addEventListener('mouseenter', hovering));
@@ -25,27 +25,34 @@ function makeGrid(num) {
 
 makeGrid(16);
 
-userGrid.addEventListener('change', e => {
-    let userInput = e.target.value;
+userGrid.addEventListener('change', userGridInput);
+
+function userGridInput() {
+    let userInput = userGrid.value;
 
     if (userInput > 100) {
         alert('Please input "number less than 101"!');
         return;
     }
     makeGrid(userInput);
-})
-
-function hovering(e) {
-    e.target.style.backgroundColor = 'yellow';
 }
 
-resetBtn.addEventListener('click', e => {
-    gridItems.forEach(item => {item.style.backgroundColor = 'black'});
+function hovering(e) {
+    e.target.style.backgroundColor = 'black';
+}
+
+resetBtn.addEventListener('click', reset);
+
+function reset() {
+    let grids = gridContainer.querySelectorAll('div');
+    grids.forEach(grid => grid.style.backgroundColor = 'white');
     userGrid.value = '16';
     makeGrid(16);
-})
+}
 
 // based on what color the user selects
-selectedColor.addEventListener('change', e => {
-    // console.log(e.target.value);
+selectedColor.addEventListener('input', e => {
+    let grids = gridContainer.querySelectorAll('div');
+    grids.forEach(grid => grid.style.backgroundColor = selectedColor.value);
+    console.log(selectedColor.value, gridContainer, grids)
 })
