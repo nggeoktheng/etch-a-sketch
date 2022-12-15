@@ -1,9 +1,8 @@
 const gridContainer = document.getElementById('gridContainer');
 const resetBtn = document.querySelector('.resetBtn');
 const eraserBtn = document.querySelector('.eraseBtn');
-const enterBtn = document.getElementById('enterBtn');
-let userGrid = document.getElementById('userGrid');
-let selectedColor = document.getElementById('colorpicker');
+const userGrid = document.getElementById('userGrid');
+const selectedColor = document.getElementById('colorpicker');
 
 function makeGrid(num) {
     gridContainer.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
@@ -18,8 +17,7 @@ function makeGrid(num) {
         grid.className = 'gridItem';
         grid.style.backgroundColor = 'white';
         gridContainer.append(grid);
-        const gridItems = document.querySelectorAll('.gridItem');
-        gridItems.forEach(item => item.addEventListener('mouseenter', hovering));
+        grid.addEventListener('mouseenter', hovering);
     }
 }
 
@@ -37,8 +35,10 @@ function userGridInput() {
     makeGrid(userInput);
 }
 
+let color = 'black';
+
 function hovering(e) {
-    e.target.style.backgroundColor = 'black';
+    e.target.style.backgroundColor = color;
 }
 
 resetBtn.addEventListener('click', reset);
@@ -47,12 +47,12 @@ function reset() {
     let grids = gridContainer.querySelectorAll('div');
     grids.forEach(grid => grid.style.backgroundColor = 'white');
     userGrid.value = '16';
+    selectedColor.value = '#7bb7cc';
     makeGrid(16);
 }
 
-// based on what color the user selects
-selectedColor.addEventListener('input', e => {
-    let grids = gridContainer.querySelectorAll('div');
-    grids.forEach(grid => grid.style.backgroundColor = selectedColor.value);
-    console.log(selectedColor.value, gridContainer, grids)
-})
+selectedColor.addEventListener('input', changeColor);
+
+function changeColor(e) {
+    color = e.target.value;
+}
