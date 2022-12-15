@@ -4,6 +4,8 @@ const eraserBtn = document.querySelector('.eraseBtn');
 const userGrid = document.getElementById('userGrid');
 const selectedColor = document.getElementById('colorpicker');
 
+let color = 'black';
+
 function makeGrid(num) {
     gridContainer.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
     gridContainer.style.gridTemplateRows = `repeat(${num}, 1fr)`;
@@ -17,7 +19,7 @@ function makeGrid(num) {
         grid.className = 'gridItem';
         grid.style.backgroundColor = 'white';
         gridContainer.append(grid);
-        grid.addEventListener('mouseenter', hovering);
+        grid.addEventListener('mouseenter', coloring);
     }
 }
 
@@ -35,9 +37,7 @@ function userGridInput() {
     makeGrid(userInput);
 }
 
-let color = 'black';
-
-function hovering(e) {
+function coloring(e) {
     e.target.style.backgroundColor = color;
 }
 
@@ -55,4 +55,10 @@ selectedColor.addEventListener('input', changeColor);
 
 function changeColor(e) {
     color = e.target.value;
+}
+
+eraserBtn.addEventListener('click', eraseIt);
+
+function eraseIt() {
+    color = 'white';
 }
