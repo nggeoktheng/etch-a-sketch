@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: bisque;
 }
 
 #flexContainer {
@@ -34,6 +35,8 @@ label {
 }
 
 input#userGrid {
+    border-color: #404040;
+    border-radius: 5px;
     width: 50px;
     height: 25px;
     text-align: center;
@@ -47,16 +50,43 @@ input#userGrid {
 }
 
 input#colorpicker {
-    width: 84px;
-    height: 24px;
-    margin: 0 3px;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+}
+
+#colorpicker::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
 }
 
 #enterBtn,
-button {
+.resetBtn {
     border-radius: 5px;
     padding: 3px;
     margin: 0 4px;
+}
+
+#enterBtn,
+.resetBtn,
+.eraseBtn {
+    background-color: #a9a9a9;
+    border-color: #a9a9a9;
+    color: #F5F5DC;
+}
+
+.rgbBtn,
+.eraseBtn {
+    border-radius: 5px;
+    padding: 3px;
+    margin: 0 5px;
+}
+
+.rgbBtn {
+    background-color: #f6bfbc;
+    border-color: #f6bfbc;
+    color: grey;
 }
 
 #gridContainer {
