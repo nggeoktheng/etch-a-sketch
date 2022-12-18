@@ -4,7 +4,7 @@ const eraserBtn = document.querySelector('.eraseBtn');
 const userGrid = document.getElementById('userGrid');
 const selectedColor = document.getElementById('colorpicker');
 
-let color = 'black';
+let color = '#51777c';
 
 function makeGrid(num) {
     gridContainer.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
@@ -17,7 +17,7 @@ function makeGrid(num) {
     for (let i = 0; i < gridBoxes; i++) {
         let grid = document.createElement('div');
         grid.className = 'gridItem';
-        grid.style.backgroundColor = 'bisque';
+        grid.style.backgroundColor = '#9bbabd';
         gridContainer.append(grid);
         grid.addEventListener('mouseenter', coloring);
     }
@@ -29,7 +29,8 @@ userGrid.addEventListener('change', userGridInput);
 
 function userGridInput() {
     let userInput = userGrid.value;
-    color = 'black';
+    color = '#51777c';
+    selectedColor.value = '#51777c';
 
     if (userInput > 100) {
         alert('Please input "number less than 101"!');
@@ -46,10 +47,10 @@ resetBtn.addEventListener('click', reset);
 
 function reset() {
     let grids = gridContainer.querySelectorAll('div');
-    grids.forEach(grid => grid.style.backgroundColor = 'bisque');
-    color = 'black';
+    grids.forEach(grid => grid.style.backgroundColor = '#9bbabd');
+    color = '#51777c';
     userGrid.value = '16';
-    selectedColor.value = '#7bb7cc';
+    selectedColor.value = '#51777c';
     makeGrid(16);
 }
 
@@ -62,7 +63,7 @@ function changeColor(e) {
 eraserBtn.addEventListener('click', eraseIt);
 
 function eraseIt() {
-    color = 'bisque';
+    color = '#9bbabd';
 }
 
 const rgbBtn = document.querySelector('.rgbBtn');
