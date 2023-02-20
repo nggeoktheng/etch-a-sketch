@@ -5,6 +5,7 @@ const userGrid = document.getElementById('userGrid');
 const selectedColor = document.getElementById('colorpicker');
 
 let color = '#51777c';
+let isRandom = false;
 
 function makeGrid(num) {
     gridContainer.style.gridTemplateColumns = `repeat(${num}, 1fr)`;
@@ -40,6 +41,10 @@ function userGridInput() {
 }
 
 function coloring(e) {
+    if (isRandom === true) {
+        randomRGB()
+    }
+    
     e.target.style.backgroundColor = color;
 }
 
@@ -48,6 +53,7 @@ resetBtn.addEventListener('click', reset);
 function reset() {
     let grids = gridContainer.querySelectorAll('div');
     grids.forEach(grid => grid.style.backgroundColor = '#9bbabd');
+    isRandom = false;
     color = '#51777c';
     userGrid.value = '16';
     selectedColor.value = '#51777c';
@@ -63,16 +69,22 @@ function changeColor(e) {
 eraserBtn.addEventListener('click', eraseIt);
 
 function eraseIt() {
+    isRandom = false;
     color = '#9bbabd';
 }
 
 const rgbBtn = document.querySelector('.rgbBtn');
 
-rgbBtn.addEventListener('click', randomRGB);
+rgbBtn.addEventListener('click', activateRGB);
 
 function randomRGB() {
     const x = Math.floor(Math.random()*256);
     const y = Math.floor(Math.random()*256);
     const z = Math.floor(Math.random()*256);
     color = "rgb("+x+","+y+","+z+")";
+}
+
+function activateRGB() {
+    isRandom = true;
+    randomRGB();
 }
